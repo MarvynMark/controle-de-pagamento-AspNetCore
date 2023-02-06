@@ -3,8 +3,8 @@ using System.Collections.Concurrent;
 
 namespace ControleDePagamento.Aplication.Interfaces
 {
-    public interface IImportadorDeDados
+    public interface IImportadorDeDadosServices
     {
-        ConcurrentBag<FolhaPontoArquivo> Importar(string folderPath);
+       Task<ConcurrentBag<FolhaPontoArquivo>> Importar(string folderPath);
     }
 }

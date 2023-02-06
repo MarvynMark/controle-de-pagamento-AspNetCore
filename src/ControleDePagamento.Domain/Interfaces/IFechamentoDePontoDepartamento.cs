@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleDePagamento.Domain.Models;
+using System.Collections.Concurrent;
 
 namespace ControleDePagamento.Domain.Interfaces
 {
-    internal interface IFechamentoDePontoDepartamento
+    public interface IFechamentoDePontoDepartamento
     {
+        Task<IList<FechamentoDePontoDepartamento>> ConsolidaDepartamentosComFuncionarios(ConcurrentBag<FolhaPontoArquivo> folhaPontoArquivo);
+        Task<IList<FechamentoDePontoDepartamento>> RealizaBalancoPorDepartamento(IList<FechamentoDePontoDepartamento> departamentos, ConcurrentBag<FolhaPontoArquivo> folhaPontoArquivo);
     }
 }

@@ -1,33 +1,22 @@
 ﻿using ControleDePagamento.Aplication.Interfaces;
-using ControleDePagamento.Domain.Mapping;
 using ControleDePagamento.Domain.Models;
-using CsvHelper;
-using CsvHelper.Configuration;
-using System;
-using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.OleDb;
-using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 // processo de importação dos arquivos
 namespace ControleDePagamento.Aplication.Services
 {
-    public class ImportadorDeDados : IImportadorDeDados
+    public class ImportadorDeDadosServices : IImportadorDeDadosServices
     {
-        public ConcurrentBag<FolhaPontoArquivo> Importar(string folderPath)
+        public async Task<ConcurrentBag<FolhaPontoArquivo>> Importar(string folderPath)
         {
             try
             {
                 var files = Directory.GetFiles(folderPath, "*.csv");
                 var folhaPontoArquivos = new ConcurrentBag<FolhaPontoArquivo>();
 
-                foreach (var file in files)
-                //Parallel.ForEach(files, file =>
+                Parallel.ForEach(files, file =>
                 {
                     var fileName = new FileInfo(file).Name.Replace(".csv", "");
                     var lines = File.ReadAllLines(file, Encoding.GetEncoding("iso-8859-1"));
@@ -56,10 +45,10 @@ namespace ControleDePagamento.Aplication.Services
                            values[colAlmoco]
                         ));
                     }
-                };
-                return folhaPontoArquivos;
+                });
+                return await Task.FromResult(folhaPontoArquivos);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

@@ -1,0 +1,57 @@
+﻿@model ControleDePagamento.Web.Models.ViewModels.ImportacaoArquivoViewModel
+
+@{
+    ViewData["Title"] = "Importação de arquivos";
+}
+<h2>@ViewData["Title"]</h2>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+    <h6 style="margin-top: 60px">Click no botão abaixo para escolher a pasta onde estão os arquivos para a importação</h6>
+    <hr />
+
+    @{
+         if (!Model.DiretorioValidado)
+        {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Atenção!</strong> @Model.MsgErro
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        if (Model.ProcessoConcluido)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Opaa!</strong> @foreach (var item in Model.MsgSucesso)
+                {
+                    @item <br />
+                } 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+
+    <div class="row" style="margin-top: 40px">
+        <div class="col-md-6">
+            <form asp-action="Importar">
+                <div class="row">
+                    <div class="form-group">
+                        <label asp-for="ImportacaoAquivo.DiretorioAquivo" class="control-label">Informe o diretório dos arquivos</label>
+                        <input asp-for="ImportacaoAquivo.DiretorioAquivo" class="form-control" />
+                        <span asp-validation-for="ImportacaoAquivo.DiretorioAquivo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="submit" value="Importar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

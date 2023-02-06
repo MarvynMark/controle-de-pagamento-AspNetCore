@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ControleDePagamento.Domain.Models
 {
     public class FolhaPontoArquivo
@@ -26,6 +19,7 @@ namespace ControleDePagamento.Domain.Models
         public double HorasExtras { get; set; }
         public double HorasDebito { get; set; }
         public bool DiaExtra { get; set; }
+        public double HorasTrabalhadas { get; set; }
         public bool DadosValidos { get; set; } = true;
 
         public FolhaPontoArquivo()
@@ -38,18 +32,6 @@ namespace ControleDePagamento.Domain.Models
             NomeArquivo = nomeArquivo;
             Funcionario = funcionario;
             PeriodoHoraAlmoco = periodoHoraAlmoco;
-            //Codigo = GetCodigo(codigo);
-            //ValorHora = GetValorHora(valorHora);
-            //Data = GetData(data);
-            //HoraEntrada = GetHora(horaEntrada);
-            //HoraSaida = GetHora(horaSaida);
-            //PeriodoHoraAlmoco = periodoHoraAlmoco;
-            //HoraInicioAlmoco = GetHoraAlmoco(periodoHoraAlmoco, 0);
-            //HoraFimAlmoco = GetHoraAlmoco(periodoHoraAlmoco, 1);
-            //Departamento = GetNomeDepartamento(nomeArquivo);
-            //MesVigente = GetMesVigente(nomeArquivo);
-            //AnoVigente = GetAnoVigente(nomeArquivo);
-
             AjustaDados(codigo, valorHora, data, horaEntrada, horaSaida, nomeArquivo, periodoHoraAlmoco);
             CalculaHoras(HoraEntrada, HoraSaida, HoraInicioAlmoco, HoraFimAlmoco, Data);
         }
@@ -64,8 +46,10 @@ namespace ControleDePagamento.Domain.Models
                 HorasExtras = horasTrabalhadas.TotalHours;
             else if (horasTrabalhadas.TotalHours > 8)
                 HorasExtras = horasTrabalhadas.Subtract(TimeSpan.FromHours(8)).TotalHours;
-            else 
+            else
                 HorasDebito = Math.Abs(horasTrabalhadas.Subtract(TimeSpan.FromHours(8)).TotalHours);
+
+            HorasTrabalhadas = horasTrabalhadas.TotalHours;
         }
 
         private void AjustaDados(string codigoStr, string valorHoraStr, string dataStr, string horaEntradaStr, string horaSaidaStr, string nomeArquivo, string periodoHoraAlmoco)
@@ -108,7 +92,7 @@ namespace ControleDePagamento.Domain.Models
                     DadosValidos = false;
 
                 // HoraInicioAlmoco
-                var periodoAlmocoArray = periodoHoraAlmoco.Split(" - ");
+                var periodoAlmocoArray = periodoHoraAlmoco.Replace(" ", "").Split("-");
                 if (periodoAlmocoArray.Length > 0)
                 {
                     var horaStr = periodoAlmocoArray[0];
@@ -169,183 +153,6 @@ namespace ControleDePagamento.Domain.Models
             catch (Exception)
             {
                 DadosValidos = false;
-            }
-        }
-
-        private int GetCodigo(string codigoStr)
-        {
-            try
-            {
-                int codigo;
-                if (int.TryParse(codigoStr, out codigo))
-                    return codigo;
-                else
-                {
-                    DadosValidos = false;
-                    return 0;
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return 0;
-            }
-        }
-        private double GetValorHora(string valorHoraStr)
-        {
-            try
-            {
-                double valorHora;
-                if (double.TryParse(valorHoraStr.ToUpper().Replace("R$", "").Replace(" ", ""), out valorHora))
-                    return valorHora;
-                else
-                {
-                    DadosValidos = false;
-                    return 0;
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return 0;
-            }
-        }
-        private DateOnly GetData(string dataStr) 
-        {
-            try
-            {
-                DateOnly data;
-                if (DateOnly.TryParse(dataStr, out data))
-                    return data;
-                else
-                {
-                    DadosValidos = false;
-                    return new DateOnly();
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return new DateOnly();
-            }
-        }
-        private TimeOnly GetHora(string horaStr) 
-        {
-            try
-            {
-                TimeOnly hora;
-                if (TimeOnly.TryParse(horaStr, out hora))
-                    return hora;
-                else
-                {
-                    DadosValidos = false;
-                    return new TimeOnly();
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return new TimeOnly();
-            }
-        }
-
-        private string GetNomeDepartamento(string nomeArquivo)
-        {
-            try
-            {
-                var nomeArray = nomeArquivo.Split('-');
-                if (nomeArray.Length > 0)
-                    return nomeArquivo.Split('-')[0];
-                else
-                {
-                    DadosValidos = false;
-                    return string.Empty;
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return string.Empty;
-            }
-            
-        }
-        private string GetMesVigente(string nomeArquivo)
-        {
-            try
-            {
-                var nomeArray = nomeArquivo.Split('-');
-                if (nomeArray.Length > 1)
-                    return nomeArray[1];
-                else
-                {
-                    DadosValidos = false;
-                    return string.Empty;
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return string.Empty;
-            }
-            
-        }
-        private int GetAnoVigente(string nomeArquivo)
-        {
-            try
-            {
-                var nomeArray = nomeArquivo.Split('-');
-                if (nomeArray.Length > 2)
-                {
-                    var anoStr = nomeArray[2];
-                    int ano;
-                    if (int.TryParse(anoStr, out ano))
-                        return ano;
-                    else
-                    {
-                        DadosValidos = false;
-                        return 0;
-                    }
-                }
-                else
-                {
-                    DadosValidos = false;
-                    return 0;
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return 0;
-            }
-            
-        }
-        private TimeOnly GetHoraAlmoco(string periodoHoraAlmoco, int indice)
-        {
-            try
-            {
-                var periodoAlmocoArray = periodoHoraAlmoco.Split(" - ");
-                if (periodoAlmocoArray.Length > indice)
-                {
-                    var horaStr = periodoHoraAlmoco.Split(" - ")[indice];
-                    TimeOnly hora;
-                    if (TimeOnly.TryParse(horaStr, out hora))
-                        return hora;
-                    else
-                    {
-                        DadosValidos = false;
-                        return new TimeOnly();
-                    }
-                }
-                else
-                {
-                    DadosValidos = false;
-                    return new TimeOnly();
-                }
-            }
-            catch (Exception)
-            {
-                DadosValidos = false;
-                return new TimeOnly();
             }
         }
     }
