@@ -1,4 +1,4 @@
-<h1 align="center">:file_cabinet: Controle de Pamento</h1>
+<h1 align="center">:file_cabinet: Controle de Pagamento</h1>
 
 ## :memo: Descrição
 Este é um projeto que simula um departamento de RH, que precisa consolidar uma série de arquivos de diferentes departamentos para executar o fechamento do ponto e emitir a ordem de pagamento.
@@ -6,12 +6,12 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 ## :books: Funcionalidades
 * <b>1. </b> O sistema importa todos os arquivos de uma pasta previamente informada pelo usuário.
 * <b>2. </b> O sistema trata os dados importados dos arquivos de forma a poder trabalhar com eles posteriormente.
-* <b>3. </b> O sistema consolida os dados pertinentes aos departamentos e funcionarios.
-* <b>4. </b> O sistema gera um aquivo JSON com todos os dados consolidados e salva na mesma pasta informada.
+* <b>3. </b> O sistema consolida os dados pertinentes aos departamentos e funcionários.
+* <b>4. </b> O sistema gera um arquivo JSON com todos os dados consolidados e salva na mesma pasta informada.
 
 ## :iphone: Requisitos Funcionais
-* <b>1. </b> O sistema deve permitir o inserir o diretório no qual estão os aquivos a serem lidos.
-* <b>2. </b> O sistema deve gerar um aquivo JSON com os dados consolidados de departamentos e funcionários.
+* <b>1. </b> O sistema deve permitir o inserir o diretório no qual estão os arquivos a serem lidos.
+* <b>2. </b> O sistema deve gerar um arquivo JSON com os dados consolidados de departamentos e funcionários.
 
 ## :computer: Requisitos não Funcionais
 * <b>1. </b> O sistema deve ser fácil de usar e intuitivo.
@@ -28,7 +28,7 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 
 ## :wrench: Tecnologias/Metodologias utilizadas
 * Tecnologias: Asp.Net MVC com .Net versão 6
-* Metologias: Utilizado a abordagem DDD (Domain-Driven Design) 
+* Metodologias: Utilizado a abordagem DDD (Domain-Driven Design) 
 
 ## :rocket: Rodando o projeto
 * Para rodar o repositório é necessário clonar o mesmo, e iniciar o projeto ControleDePagamento.Web
