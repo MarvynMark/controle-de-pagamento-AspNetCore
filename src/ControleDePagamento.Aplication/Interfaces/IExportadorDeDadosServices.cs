@@ -4,6 +4,6 @@ namespace ControleDePagamento.Aplication.Interfaces
 {
     public interface IExportadorDeDadosServices
     {
-        void ExportaJson(IList<FechamentoDePontoDepartamento> departamentos, string diretórioSave);
+        void ExportaJson(IList<FechamentoDePontoDepartamento> departamentos, string diretorioSave);
     }
 }
