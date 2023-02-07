@@ -10,7 +10,7 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 * <b>4. </b> O sistema gera um arquivo JSON com todos os dados consolidados e salva na mesma pasta informada.
 
 ## :iphone: Requisitos Funcionais
-* <b>1. </b> O sistema deve permitir o inserir o diretório no qual estão os arquivos a serem lidos.
+* <b>1. </b> O sistema deve permitir o usuário inserir o diretório no qual estão os arquivos a serem lidos.
 * <b>2. </b> O sistema deve gerar um arquivo JSON com os dados consolidados de departamentos e funcionários.
 
 ## :computer: Requisitos não Funcionais
