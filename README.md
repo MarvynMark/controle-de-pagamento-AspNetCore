@@ -27,7 +27,7 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 * <b>6. </b> Dias extras são pagos.
 
 ## :wrench: Tecnologias/Metodologias utilizadas
-* Tecnologias: Asp.Net MVC com .Net versão 6
+* Tecnologias: .Net 6 com Asp.Net MVC
 * Metodologias: Utilizado a abordagem DDD (Domain-Driven Design) 
 
 ## :rocket: Rodando o projeto
