@@ -20,7 +20,7 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 
 ## :page_facing_up: Regras de negócios
 * <b>1. </b> O trabalho segue de segunda a sexta e é esperado que o funcionário trabalhe 8 horas por dia mais 1 hora de almoço.
-* <b>2. </b> Valor é definido por da hora.
+* <b>2. </b> Valor é definido por hora.
 * <b>3. </b> Os dias não trabalhados são descontados da pessoa.
 * <b>4. </b> Horas não trabalhadas são descontadas da pessoa.
 * <b>5. </b> Horas extras são pagas.
