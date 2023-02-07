@@ -1,35 +1,52 @@
-<h1 align="center">:file_cabinet: Exemplo de README.md</h1>
+<h1 align="center">:file_cabinet: Controle de Pamento</h1>
 
 ## :memo: Descrição
-Escreva uma descrição do seu projeto
+Este é um projeto que simula um departamento de RH, que precisa consolidar uma série de arquivos de diferentes departamentos para executar o fechamento do ponto e emitir a ordem de pagamento.
 
 ## :books: Funcionalidades
-* <b>Funcionalidade 1</b>: O que essa funcionalidade faz?
+* <b>1. </b> O sistema importa todos os arquivos de uma pasta previamente informada pelo usuário.
+* <b>2. </b> O sistema trata os dados importados dos arquivos de forma a poder trabalhar com eles posteriormente.
+* <b>3. </b> O sistema consolida os dados pertinentes aos departamentos e funcionarios.
+* <b>4. </b> O sistema gera um aquivo JSON com todos os dados consolidados e salva na mesma pasta informada.
 
-## :wrench: Tecnologias utilizadas
-* Tecnologia;
+## :iphone: Requisitos Funcionais
+* <b>1. </b> O sistema deve permitir o inserir o diretório no qual estão os aquivos a serem lidos.
+* <b>2. </b> O sistema deve gerar um aquivo JSON com os dados consolidados de departamentos e funcionários.
+
+## :computer: Requisitos não Funcionais
+* <b>1. </b> O sistema deve ser fácil de usar e intuitivo.
+* <b>2. </b> O sistema deve ter uma taxa de resposta rápida, mesmo com grandes quantidades de dados.
+* <b>3. </b> O sistema precisa validar os dias trabalhados e horas trabalhadas em cada dia.
+
+## :page_facing_up: Regras de negócios
+* <b>1. </b> O trabalho segue de segunda a sexta e é esperado que o funcionário trabalhe 8 horas por dia mais 1 hora de almoço.
+* <b>2. </b> Valor é definido por da hora.
+* <b>3. </b> Os dias não trabalhados são descontados da pessoa.
+* <b>4. </b> Horas não trabalhadas são descontadas da pessoa.
+* <b>5. </b> Horas extras são pagas.
+* <b>6. </b> Dias extras são pagos.
+
+## :wrench: Tecnologias/Metodologias utilizadas
+* Tecnologias: Asp.Net MVC com .Net versão 6
+* Metologias: Utilizado a abordagem DDD (Domain-Driven Design) 
 
 ## :rocket: Rodando o projeto
-Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
-```
-<linha de comando>
-```
+* Para rodar o repositório é necessário clonar o mesmo, e iniciar o projeto ControleDePagamento.Web
 
 ## :soon: Implementação futura
-* O que será implementado na próxima sprint?
+* Pode ser implementado o serviço de persistência dos dados, salvando os dados em banco para consultas futuras.
 
-## :handshake: Colaboradores
+
+## :handshake: Desenvolvedor 
 <table>
   <tr>
     <td align="center">
-      <a href="http://github.com/tatialveso">
-        <img src="https://avatars.githubusercontent.com/u/56259137?v=4" width="100px;" alt="Foto de Tati Alves no GitHub"/><br>
+      <a href="https://github.com/MarvynMark">
+        <img src="https://avatars.githubusercontent.com/u/71413472?v=4" width="100px;" alt="Marvyn Mark"/><br>
         <sub>
-          <b>tatialveso</b>
+          <b>Marvyn Mark</b>
         </sub>
       </a>
     </td>
   </tr>
 </table>
-
-## :dart: Status do projeto
