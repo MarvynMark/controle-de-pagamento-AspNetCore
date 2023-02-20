@@ -2,6 +2,7 @@ using ControleDePagamento.Aplication.Interfaces;
 using ControleDePagamento.Aplication.Services;
 using ControleDePagamento.Domain.Models;
 using ControleDePagamento.Domain.Interfaces ;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests
 {
@@ -14,7 +15,7 @@ namespace Tests
 
         [SetUp]
         public void Setup()
-        {
+        { 
             _importadorDeDadosServices = new ImportadorDeDadosServices();
             _fechamentoDepartamento = new FechamentoDePontoDepartamento();
             _fechamentoFuncionario = new FechamentoDePontoFuncionario();

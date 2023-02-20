@@ -14,12 +14,12 @@ namespace ControleDePagamento.Web.Controllers
         private readonly IFechamentoDePontoFuncionario _fechamentoFuncionario;
         private readonly IExportadorDeDadosServices _exportadorDeDadosServices;
 
-        public ImportacaoArquivosController()
+        public ImportacaoArquivosController(IImportadorDeDadosServices importadorDeDados, IFechamentoDePontoDepartamento fechamentoDepartamento, IFechamentoDePontoFuncionario fechamentoFuncionario, IExportadorDeDadosServices exportadorDeDadosServices)
         {
-            _importadorDeDados = new ImportadorDeDadosServices();
-            _fechamentoDepartamento = new FechamentoDePontoDepartamento();
-            _fechamentoFuncionario = new FechamentoDePontoFuncionario();
-            _exportadorDeDadosServices = new ExportadorDeDadosServices();
+            _importadorDeDados = importadorDeDados;
+            _fechamentoDepartamento = fechamentoDepartamento;
+            _fechamentoFuncionario = fechamentoFuncionario;
+            _exportadorDeDadosServices = exportadorDeDadosServices;
         }
 
         public ActionResult Index(ImportacaoArquivoViewModel importacaoAquivoViewModel)
@@ -59,7 +59,6 @@ namespace ControleDePagamento.Web.Controllers
 
                     _exportadorDeDadosServices.ExportaJson(fechamentoGeral, importacaoArquivoViewModel.ImportacaoAquivo.DiretorioAquivo);
 
-
                     importacaoArquivoViewModel.MsgSucesso = new List<string>
                     {
                         "Processo de importação de arquivos realizado com sucesso!",
@@ -68,7 +67,8 @@ namespace ControleDePagamento.Web.Controllers
                         $"Tempo gasto realizando fechamento dos funcionários: {tempoRealizandoFechamentoFuncionarios.ToString(@"hh\:mm\:ss\.fff")}",
                         $"Tempo gasto realizando fechamento dos departamentos: {tempoRealizandoFechamentoDepartamentos.ToString(@"hh\:mm\:ss\.fff")}",
                         $"Tempo total gasto: {(tempoImportacaoArquivo + tempoAgrupandoDepartamentos + tempoRealizandoFechamentoFuncionarios + tempoRealizandoFechamentoDepartamentos).ToString(@"hh\:mm\:ss\.fff")}",
-                        "Total de dados importados: " + string.Format("{0:n0}", folhaPontoArquivos.Count()) 
+                        "Total de dados importados: " + string.Format("{0:n0}", folhaPontoArquivos.Count()),
+                        $"Total de dados não importados: {folhaPontoArquivos.Count(x => !x.DadosValidos)}" 
                     };
 
                     importacaoArquivoViewModel.ProcessoConcluido = true;

@@ -1,7 +1,17 @@
+using ControleDePagamento.Aplication.Interfaces;
+using ControleDePagamento.Aplication.Services;
+using ControleDePagamento.Domain.Interfaces;
+using ControleDePagamento.Domain.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IImportadorDeDadosServices, ImportadorDeDadosServices> ();
+builder.Services.AddScoped<IFechamentoDePontoDepartamento, FechamentoDePontoDepartamento>();
+builder.Services.AddScoped<IFechamentoDePontoFuncionario, FechamentoDePontoFuncionario>();
+builder.Services.AddScoped<IExportadorDeDadosServices, ExportadorDeDadosServices>();
 
 var app = builder.Build();
 
