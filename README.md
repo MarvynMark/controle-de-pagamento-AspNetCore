@@ -32,6 +32,7 @@ Este é um projeto que simula um departamento de RH, que precisa consolidar uma 
 
 ## :rocket: Rodando o projeto
 * Para rodar o repositório é necessário clonar o mesmo, e iniciar o projeto ControleDePagamento.Web
+* Informar o diretório que contem os arquivos que serão lidos no único campo da página e clicar no botão Importar. 
 
 ## :soon: Implementação futura
 * Pode ser implementado o serviço de persistência dos dados, salvando os dados em banco para consultas futuras.
